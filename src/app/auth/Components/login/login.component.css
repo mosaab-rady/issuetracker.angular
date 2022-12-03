@@ -1,0 +1,13 @@
+.auth__container {
+  min-height: 100vh;
+  background: #9053c7;
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+}
+.auth__btn {
+  background-color: #9053c7;
+  font-weight: 600;
+  color: black;
+}
+.auth__btn:hover {
+  background-color: #c850c0;
+}

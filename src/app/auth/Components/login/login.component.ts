@@ -1,0 +1,71 @@
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LoginDto } from 'src/app/shared/Dtos/Users/LoginDto';
+import { UserDto } from 'src/app/shared/Dtos/Users/UserDto';
+import { AuthService } from '../../services/auth.service';
+
+interface LoginForm {
+  Email: FormControl<string>;
+  Password: FormControl<string>;
+  RememberMe: FormControl<boolean>;
+}
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
+})
+export class LoginComponent {
+  /**
+   *
+   */
+  constructor(private auth: AuthService, private router: Router) {}
+
+  LoginForm = new FormGroup<LoginForm>({
+    Email: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.email],
+    }),
+    Password: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    RememberMe: new FormControl(false, { nonNullable: true }),
+  });
+
+  onSubmit() {
+    if (this.LoginForm.valid) {
+      document.getElementById('loginBtn')!.setAttribute('disabled', 'true');
+      document.getElementById('loginBtn')!.innerText = 'Please Wait....';
+      this.Login();
+    }
+  }
+
+  Login(): void {
+    const loginDto: LoginDto = {
+      Email: this.LoginForm.value.Email!,
+      Password: this.LoginForm.value.Password!,
+      RememberMe: this.LoginForm.value.RememberMe!,
+    };
+
+    this.auth.Login(loginDto).subscribe({
+      next: (userDto: UserDto) => {
+        // console.log('data', userDto);
+        this.auth.USER = userDto;
+      },
+      error: (err) => {
+        // console.log('error', err);
+        this.LoginForm.setErrors({
+          0: err.error?.detail || 'somthing went wrong try again later',
+        });
+        document.getElementById('loginBtn')!.setAttribute('disabled', 'false');
+        document.getElementById('loginBtn')!.innerText = 'LOGIN';
+      },
+      complete: () => {
+        // console.log('complete');
+        this.router.navigate(['']);
+      },
+    });
+  }
+}
