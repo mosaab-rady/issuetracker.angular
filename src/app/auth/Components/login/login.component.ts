@@ -17,6 +17,7 @@ interface LoginForm {
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  showPassword: boolean = false;
   /**
    *
    */
@@ -37,7 +38,9 @@ export class LoginComponent {
   onSubmit() {
     if (this.LoginForm.valid) {
       document.getElementById('loginBtn')!.setAttribute('disabled', 'true');
-      document.getElementById('loginBtn')!.innerText = 'Please Wait....';
+      document
+        .getElementById('loginBtn')!
+        .setAttribute('value', 'Please Wait....');
       this.Login();
     }
   }
@@ -60,12 +63,16 @@ export class LoginComponent {
           0: err.error?.detail || 'somthing went wrong try again later',
         });
         document.getElementById('loginBtn')!.setAttribute('disabled', 'false');
-        document.getElementById('loginBtn')!.innerText = 'LOGIN';
+        document.getElementById('loginBtn')!.setAttribute('value', 'LOGIN');
       },
       complete: () => {
         // console.log('complete');
         this.router.navigate(['']);
       },
     });
+  }
+
+  togglePassword(): void {
+    this.showPassword = !this.showPassword;
   }
 }
