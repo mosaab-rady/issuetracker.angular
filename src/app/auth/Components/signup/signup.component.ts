@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { CheckEmailService } from '../../services/check-email.service';
 
 interface signupForm {
   FirstName: FormControl<string>;
@@ -28,11 +30,41 @@ export class SignupComponent {
   /**
    *
    */
-  constructor() { }
+  constructor(private auth: AuthService, private checkEmail: CheckEmailService) { }
 
-  onSubmit() {
+  Signup(): void {
+
+
+
+    const formdata: FormData = new FormData();
+
+    formdata.append("FirstName", this.SignupForm.get('FirstName')!.value);
+    formdata.append("LastName", this.SignupForm.get('LastName')!.value);
+    formdata.append("Email", this.SignupForm.get('Email')!.value);
+    formdata.append("Password", this.SignupForm.get('Password')!.value);
+    formdata.append("ConfirmPassword", this.SignupForm.get('ConfirmPassword')!.value);
+    formdata.append("Image", (document.getElementById("signupUserImage") as HTMLInputElement).files![0]);
+
+
+
+
+    this.auth.Signup(formdata).subscribe({
+      next: (v) => {
+        console.log("data", v);
+      },
+      error: (e) => {
+        console.log("error", e);
+      },
+      complete: () => {
+        console.log('complete');
+      }
+    })
+  }
+
+  onSubmit(): void {
     console.log(this.SignupForm);
-    if (this.SignupForm.invalid) {
+    if (this.SignupForm.valid) {
+      this.Signup();
     }
   }
 
