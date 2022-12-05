@@ -33,9 +33,6 @@ export class SignupComponent {
   constructor(private auth: AuthService, private checkEmail: CheckEmailService) { }
 
   Signup(): void {
-
-
-
     const formdata: FormData = new FormData();
 
     formdata.append("FirstName", this.SignupForm.get('FirstName')!.value);
@@ -44,9 +41,6 @@ export class SignupComponent {
     formdata.append("Password", this.SignupForm.get('Password')!.value);
     formdata.append("ConfirmPassword", this.SignupForm.get('ConfirmPassword')!.value);
     formdata.append("Image", (document.getElementById("signupUserImage") as HTMLInputElement).files![0]);
-
-
-
 
     this.auth.Signup(formdata).subscribe({
       next: (v) => {
