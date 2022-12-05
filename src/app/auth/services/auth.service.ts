@@ -11,11 +11,16 @@ import { Url } from 'src/app/shared/Url';
 export class AuthService {
   USER: UserDto | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   Login(LoginDto: LoginDto): Observable<UserDto> {
     return this.http.post<UserDto>(`${Url}/api/account/login`, LoginDto, {
       withCredentials: true,
     });
+  }
+
+
+  Signup(user: FormData): Observable<object> {
+    return this.http.post(`${Url}/api/account/signup`, user);
   }
 }
