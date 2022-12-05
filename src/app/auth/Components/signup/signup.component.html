@@ -42,15 +42,16 @@
 				<li *ngIf="form['submitted'] && SignupForm.get('Email')?.hasError('email')" class="text-danger">
 					Not Valid Email Format
 				</li>
+				<li *ngIf="SignupForm.get('Email')?.hasError('usedEmail')" class="text-danger">
+					The Email Is Already Taken Please Use Another Email
+				</li>
 				<!-- End Validation -->
 
 				<!-- Password -->
 				<div class="input-group mt-3">
 					<div class="input-group-text">
-						<button class="border-0" (click)="togglePassword()">
-							<i *ngIf="!showPassword" class="bi bi-eye-fill"></i>
-							<i *ngIf="showPassword" class="bi bi-eye-slash-fill"></i>
-						</button>
+						<i *ngIf="!showPassword" (click)="togglePassword()" class="bi bi-eye-fill btn btn-sm p-0"></i>
+						<i *ngIf="showPassword" (click)="togglePassword()" class="bi bi-eye-slash-fill btn btn-sm p-0"></i>
 					</div>
 					<input [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="Password"
 						class="form-control py-2" required />
@@ -67,10 +68,9 @@
 				<!-- Confirm Password -->
 				<div class="input-group mt-3">
 					<div class="input-group-text">
-						<button class="border-0" (click)="toggleConfirmPassword()">
-							<i *ngIf="!showConfirmPassword" class="bi bi-eye-fill"></i>
-							<i *ngIf="showConfirmPassword" class="bi bi-eye-slash-fill"></i>
-						</button>
+						<i *ngIf="!showConfirmPassword" (click)="toggleConfirmPassword()" class="bi bi-eye-fill btn btn-sm p-0"></i>
+						<i *ngIf="showConfirmPassword" (click)="toggleConfirmPassword()"
+							class="bi bi-eye-slash-fill btn btn-sm p-0"></i>
 					</div>
 					<input [type]="showConfirmPassword ? 'text' : 'password'" placeholder="ConfirmPassword"
 						formControlName="ConfirmPassword" class="form-control py-2" required />
@@ -91,7 +91,7 @@
 					<img src="../../../../assets/default-user-image.png" alt="user image" width="100px"
 						class="img-fluid rounded-circle" id="userImage" />
 					<input type="file" accept="image/*" class="form-control" formControlName="Image" required
-						(change)="ChangeImage($event)" />
+						(change)="ChangeImage($event)" id="signupUserImage" />
 				</div>
 				<!-- End of Image -->
 
