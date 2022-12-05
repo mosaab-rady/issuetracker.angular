@@ -73,6 +73,8 @@ export class SignupComponent {
     Email: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.email],
+      asyncValidators: [this.checkEmail.validate.bind(this.checkEmail)],
+      updateOn: 'blur'
     }),
     Password: new FormControl('', {
       nonNullable: true,
@@ -81,6 +83,7 @@ export class SignupComponent {
     ConfirmPassword: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, this.CheckPassword],
+      updateOn: 'submit'
     }),
     Image: new FormControl(),
   });
