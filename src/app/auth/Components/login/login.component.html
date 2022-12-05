@@ -27,10 +27,8 @@
         <!-- Password Input -->
         <div class="input-group mt-3">
           <div class="input-group-text">
-            <button class="border-0" (click)="togglePassword()">
-              <i *ngIf="!showPassword" class="bi bi-eye-fill"></i>
-              <i *ngIf="showPassword" class="bi bi-eye-slash-fill"></i>
-            </button>
+            <i *ngIf="!showPassword" (click)="togglePassword()" class="bi bi-eye-fill btn btn-sm p-0"></i>
+            <i *ngIf="showPassword" (click)="togglePassword()" class="bi bi-eye-slash-fill btn btn-sm p-0"></i>
           </div>
           <input [type]="showPassword ? 'text' : 'password'" type="password" placeholder="Password"
             formControlName="Password" required class="form-control py-2" />
