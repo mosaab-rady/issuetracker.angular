@@ -62,7 +62,7 @@ export class LoginComponent {
         this.LoginForm.setErrors({
           0: err.error?.detail || 'somthing went wrong try again later',
         });
-        document.getElementById('loginBtn')!.setAttribute('disabled', 'false');
+        document.getElementById('loginBtn')!.removeAttribute('disabled');
         document.getElementById('loginBtn')!.setAttribute('value', 'LOGIN');
       },
       complete: () => {
