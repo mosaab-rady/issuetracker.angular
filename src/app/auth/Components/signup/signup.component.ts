@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CheckEmailService } from '../../services/check-email.service';
 
@@ -18,6 +26,7 @@ interface signupForm {
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
+  errors: string[] | null = null;
   showPassword: boolean = false;
   togglePassword(): void {
     this.showPassword = !this.showPassword;
@@ -30,42 +39,82 @@ export class SignupComponent {
   /**
    *
    */
-  constructor(private auth: AuthService, private checkEmail: CheckEmailService) { }
+  constructor(
+    private auth: AuthService,
+    private checkEmail: CheckEmailService,
+    private router: Router
+  ) {}
 
   Signup(): void {
     const formdata: FormData = new FormData();
 
-    formdata.append("FirstName", this.SignupForm.get('FirstName')!.value);
-    formdata.append("LastName", this.SignupForm.get('LastName')!.value);
-    formdata.append("Email", this.SignupForm.get('Email')!.value);
-    formdata.append("Password", this.SignupForm.get('Password')!.value);
-    formdata.append("ConfirmPassword", this.SignupForm.get('ConfirmPassword')!.value);
-    formdata.append("Image", (document.getElementById("signupUserImage") as HTMLInputElement).files![0]);
+    formdata.append('FirstName', this.SignupForm.get('FirstName')!.value);
+    formdata.append('LastName', this.SignupForm.get('LastName')!.value);
+    formdata.append('Email', this.SignupForm.get('Email')!.value);
+    formdata.append('Password', this.SignupForm.get('Password')!.value);
+    formdata.append(
+      'ConfirmPassword',
+      this.SignupForm.get('ConfirmPassword')!.value
+    );
+    formdata.append(
+      'Image',
+      (document.getElementById('signupUserImage') as HTMLInputElement).files![0]
+    );
 
     this.auth.Signup(formdata).subscribe({
-      next: (v) => {
-        console.log("data", v);
-      },
+      next: () => {},
       error: (e) => {
-        console.log("error", e);
+        console.log('error', e);
+
+        if (e.error.errors) {
+          this.SignupForm.setErrors(e.error.errors);
+          this.errors = e.error.errors;
+        } else if (e.error.detail) {
+          this.SignupForm.setErrors([e.error.detail]);
+          this.errors = [e.error.detail];
+        } else {
+          this.SignupForm.setErrors([
+            'somthing went wrong please try again later.',
+          ]);
+          this.errors = ['somthing went wrong please try again later.'];
+        }
+        document.getElementById('signupBtn')!.removeAttribute('disabled');
+        document.getElementById('signupBtn')!.setAttribute('value', 'Sign Up');
       },
       complete: () => {
-        console.log('complete');
-      }
-    })
+        this.router.navigate(['confirm-email']);
+      },
+    });
   }
 
   onSubmit(): void {
     console.log(this.SignupForm);
+
     if (this.SignupForm.valid) {
+      document.getElementById('signupBtn')!.setAttribute('disabled', 'true');
+      document
+        .getElementById('signupBtn')!
+        .setAttribute('value', 'Please Wait....');
       this.Signup();
     }
   }
 
-  CheckPassword: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
-    let Password = this.SignupForm?.controls.Password.value;
-    let confirm = group.value;
-    return Password === confirm ? null : { notSame: true }
+  CheckPassword(source: string, target: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const sourceCtrl = control.get(source);
+      const targetCtrl = control.get(target);
+
+      return sourceCtrl && targetCtrl && sourceCtrl.value !== targetCtrl.value
+        ? { mismatch: true }
+        : null;
+    };
+  }
+
+  get passwordMatchError() {
+    return (
+      this.SignupForm.getError('mismatch') &&
+      this.SignupForm.get('ConfirmPassword')?.touched
+    );
   }
 
   ChangeImage(input: Event) {
@@ -87,30 +136,33 @@ export class SignupComponent {
     }
   }
 
-  SignupForm = new FormGroup<signupForm>({
-    FirstName: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    LastName: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    Email: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required, Validators.email],
-      asyncValidators: [this.checkEmail.validate.bind(this.checkEmail)],
-      updateOn: 'blur'
-    }),
-    Password: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-    ConfirmPassword: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required, this.CheckPassword],
-      updateOn: 'submit'
-    }),
-    Image: new FormControl(),
-  });
+  SignupForm = new FormGroup<signupForm>(
+    {
+      FirstName: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      LastName: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required],
+      }),
+      Email: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.email],
+        asyncValidators: [this.checkEmail.validate.bind(this.checkEmail)],
+        updateOn: 'blur',
+      }),
+      Password: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(6)],
+      }),
+      ConfirmPassword: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required],
+        updateOn: 'blur',
+      }),
+      Image: new FormControl(),
+    },
+    [this.CheckPassword('Password', 'ConfirmPassword')]
+  );
 }
