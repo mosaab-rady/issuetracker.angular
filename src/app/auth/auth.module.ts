@@ -5,9 +5,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from '../app-routing.module';
 import { SignupComponent } from './Components/signup/signup.component';
+import { ConfirmEmailComponent } from './Components/confirm-email/confirm-email.component';
+import { EmailConfirmedComponent } from './Components/email-confirmed/email-confirmed.component';
 
 @NgModule({
-  declarations: [LoginComponent, SignupComponent],
+  declarations: [LoginComponent, SignupComponent, ConfirmEmailComponent, EmailConfirmedComponent],
   imports: [
     CommonModule,
     AppRoutingModule,
