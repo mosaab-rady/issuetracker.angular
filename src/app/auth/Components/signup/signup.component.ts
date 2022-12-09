@@ -88,7 +88,7 @@ export class SignupComponent {
   }
 
   onSubmit(): void {
-    console.log(this.SignupForm);
+    // console.log(this.SignupForm);
 
     if (this.SignupForm.valid) {
       document.getElementById('signupBtn')!.setAttribute('disabled', 'true');
