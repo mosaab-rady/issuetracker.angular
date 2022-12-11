@@ -1,0 +1,48 @@
+.sidebar {
+	position: sticky;
+	left: 0;
+	bottom: 0;
+	top: 3.5rem;
+	height: calc(100vh - 3.5rem);
+	padding: 1rem 1.5rem;
+}
+
+
+.sidebar:hover {
+	display: block;
+}
+
+.create-issue {
+	width: fit-content;
+	border: 1px solid #9053c7;
+}
+
+.create-issue svg {
+	width: 25px;
+	height: 25px;
+
+}
+
+.create-issue:hover {
+	background-color: #9053c7;
+}
+
+
+
+.sidebar-link {
+	display: block;
+	padding: 0.5rem 2rem 0.5rem 0.5rem;
+	border-radius: 10px;
+	text-decoration: none;
+	color: #9053c7;
+	background-color: #e3e3e953;
+}
+
+.sidebar-link svg {
+	width: 20px;
+	height: 20px;
+}
+
+.sidebar-link:hover {
+	background-color: #e3e3e9;
+}
