@@ -1,0 +1,58 @@
+.sidebar {
+	position: sticky;
+	left: 0;
+	bottom: 0;
+	top: 3.5rem;
+	height: calc(100vh - 3.5rem);
+	padding: 1rem 0.7rem;
+	/* width: 250px; */
+	background-color: #043C77;
+}
+
+
+.sidebar:hover {
+	display: block;
+}
+
+.create-issue {
+	width: fit-content;
+	color: #D65158;
+	font-weight: normal;
+	border: 2px solid #D65158;
+}
+
+.create-issue svg {
+	width: 20px;
+	height: 20px;
+
+}
+
+
+.create-issue:hover {
+	background-color: #D65158;
+	color: #FCE9C4;
+}
+
+
+
+.sidebar-link {
+	display: block;
+	padding: 0.5rem 4rem 0.5rem 0.5rem;
+	border-radius: 3px;
+	text-decoration: none;
+	color: #f3f3f3;
+	/* background-color: #e3e3e944; */
+}
+
+.sidebar-link svg {
+	width: 20px;
+	height: 20px;
+}
+
+.sidebar-link:hover {
+	background-color: #032549;
+}
+
+.activeLink {
+	background-color: #D65158;
+}
