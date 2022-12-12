@@ -5,9 +5,7 @@ import { EmailConfirmedComponent } from './auth/Components/email-confirmed/email
 import { LoginComponent } from './auth/Components/login/login.component';
 import { SignupComponent } from './auth/Components/signup/signup.component';
 import { AuthGuard } from './auth/services/auth.guard';
-import { LayoutComponent } from './shared/components/layout/layout.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
-// import { AuthGuard } from './auth/services/auth.guard';
 
 const routes: Routes = [
   { path: 'login', title: 'Login | Issue Tracker', component: LoginComponent },
@@ -28,8 +26,9 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: LayoutComponent,
     canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./layout/layout.module').then((m) => m.LayoutModule),
   },
   {
     path: '**',
