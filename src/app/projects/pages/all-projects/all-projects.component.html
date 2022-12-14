@@ -1,9 +1,13 @@
 <div class="container-fluid p-0">
 
 	<!-- create new Project Link -->
-	<div class="row mb-4 m-0">
-		<div class="col text-end p-0">
-			<a class="d-inline-flex align-items-center btn btn-primary">
+	<div class="row mb-5 m-0 align-items-center">
+		<div class="col-6">
+			<h5>All Projects</h5>
+		</div>
+
+		<div class="col-6 text-end">
+			<a class="d-inline-flex align-items-center btn btn-primary" routerLink="create">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
 					viewBox="0 0 16 16">
 					<path fill-rule="evenodd"
@@ -14,165 +18,13 @@
 	</div>
 	<!-- end of create project -->
 
-	<div class="row m-0 gap-4 justify-content-center">
-		<div class="card col-sm-6 col-md-5 col px-0 shadow" *ngFor="let project of projects">
+	<div class="row m-0 gap-5 justify-content-center">
+		<div class="col-md-5 col-sm-6 px-0 col" *ngFor="let project of (projects | async)">
 
-			<div class="card-header bg-primary text-light">
-				Project Id : {{project.id}}
-			</div>
-
-			<div class="card-body">
-
-				<div class="container-fluid p-0">
-
-					<div class="row m-0">
-						<h6 class="p-0">
-							Project Name : {{project.name}}
-						</h6>
-					</div>
-
-					<div class="row mt-3 text-muted fw-bold">
-						<div class="col-6">
-							Start Date
-						</div>
-						<div class="col-6">
-							Target End Date
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-6">
-							{{project.startDate.toString().split('T')[0]}}
-						</div>
-						<div class="col-6">
-							{{project.targetEndDate.toString().split('T')[0]}}
-						</div>
-					</div>
-
-
-					<div class="row mt-3 text-muted fw-bold">
-						<div class="col-6">
-							Actaul End Date
-						</div>
-						<div class="col-6">
-							Created On
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-6">
-							{{project.actualEndDate.toString().split('T')[0]}}
-						</div>
-						<div class="col-6">
-							{{project.createdOn.toString().split('T')[0]}}
-						</div>
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="card-footer">
-				<div class="d-flex gap-3 w-100">
-					<a routerLink="project/{{project.id}}" class="btn btn-info flex-grow-1">Detail</a>
-					<div class="btn btn-success flex-grow-1">Edit</div>
-					<div class="btn btn-danger flex-grow-1">Delete</div>
-				</div>
-			</div>
-
+			<app-project-card [project]="project"></app-project-card>
 
 		</div>
+
 	</div>
-
-	<!-- <div class="row gap-4 m-0 justify-content-center">
-		<div class="col-sm-6 col-md-4 col bg-white p-0 rounded-3 shadow" *ngFor="let project of projects">
-			<div class="bg-primary p-3 rounded-top">
-				<h6>ID: {{project.id}}</h6>
-			</div>
-			<h5 class="text-capitalize text-center text-success fw-bold">{{project.name}} Project</h5>
-			<div class="container-fluid text-center p-0 my-3">
-				<div class="row text-muted fw-bold">
-					<div class="col-6">
-						Start Date
-					</div>
-					<div class="col-6">
-						Target End Date
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-6">
-						{{project.startDate.toString().split('T')[0]}}
-					</div>
-					<div class="col-6">
-						{{project.targetEndDate.toString().split('T')[0]}}
-					</div>
-				</div>
-			</div>
-			<div class="container-fluid text-center p-0 my-3">
-				<div class="row text-muted fw-bold">
-					<div class="col-6">
-						Actaul End Date
-					</div>
-					<div class="col-6">
-						Created On
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-6">
-						{{project.actualEndDate.toString().split('T')[0]}}
-					</div>
-					<div class="col-6">
-						{{project.createdOn.toString().split('T')[0]}}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-	<!-- projects rows -->
-	<!-- <div class="row m-0 bg-white border-bottom border-2 py-3 px-3">
-		<div class="col-3 border-end border-3 px-3">
-			<h6>Name</h6>
-		</div>
-		<div class="col-3 border-end border-3 px-3">
-			<h6>Start Date</h6>
-		</div>
-		<div class="col-3 border-end border-3 px-3">
-			<h6>Target End Date</h6>
-		</div>
-		<div class="col-3">
-			<h6>Actaul End Date</h6>
-		</div>
-	</div> -->
-	<!-- end of projects row -->
-
-
-
-	<!-- projects Data -->
-	<!-- <a class="row project-row m-0 bg-white py-3 px-3 my-2 border-start border-primary border-5 rounded-3 text-decoration-none text-primary"
-		routerLink="project/{{project.id}}" *ngFor="let project of projects">
-		<div class="col-3 px-3">
-			<p>{{project.name}}</p>
-		</div>
-		<div class="col-3 px-3">
-			<p>{{project.startDate.toString().split('T')[0]}}</p>
-		</div>
-		<div class="col-3 px-3">
-			<p>{{project.targetEndDate.toString().split('T')[0]}}</p>
-		</div>
-		<div class="col-3 px-3">
-			<p>{{project.actualEndDate.toString().split('T')[0]}}</p>
-		</div>
-	</a> -->
-	<!-- end of projects data -->
-
-	<!-- load projects -->
-	<div class="row" *ngIf="projects === null">
-		<div class="col d-flex align-items-center justify-content-center">
-			<div class="loader">
-
-			</div>
-		</div>
-	</div>
-	<!-- end of loading -->
 
 </div>
