@@ -1,0 +1,66 @@
+<div class="card shadow">
+
+	<div class="card-header bg-primary text-light">
+		Project Id : {{project.id}}
+	</div>
+
+	<div class="card-body">
+
+		<div class="container-fluid p-0">
+
+			<div class="row m-0">
+				<h6 class="p-0">
+					Project Name : {{project.name}}
+				</h6>
+			</div>
+
+			<div class="row mt-3 text-muted fw-bold">
+				<div class="col-6">
+					Start Date
+				</div>
+				<div class="col-6">
+					Target End Date
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-6">
+					{{project.startDate.toString().split('T')[0]}}
+				</div>
+				<div class="col-6">
+					{{project.targetEndDate.toString().split('T')[0]}}
+				</div>
+			</div>
+
+
+			<div class="row mt-3 text-muted fw-bold">
+				<div class="col-6">
+					Actaul End Date
+				</div>
+				<div class="col-6">
+					Created On
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-6">
+					{{project.actualEndDate.toString().split('T')[0]}}
+				</div>
+				<div class="col-6">
+					{{project.createdOn.toString().split('T')[0]}}
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="card-footer">
+		<div class="d-flex gap-3 w-100">
+			<a routerLink="project/{{project.id}}" class="btn btn-info flex-grow-1">Detail</a>
+			<div class="btn btn-success flex-grow-1">Edit</div>
+			<div class="btn btn-danger flex-grow-1">Delete</div>
+		</div>
+	</div>
+
+
+</div>
