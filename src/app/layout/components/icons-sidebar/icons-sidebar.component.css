@@ -7,14 +7,17 @@
 	padding: 1rem;
 	display: none;
 	flex-direction: column;
-	background-color: #043C77;
+	/* background-color: #043C77; */
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 
 
 .icons-sidebar svg {
 	width: 20px;
 	height: 20px;
-	color: #f3f3f3;
+	/* color: #f3f3f3; */
+	color: black;
 }
 
 .icons-sidebar a {
@@ -23,9 +26,11 @@
 }
 
 .icons-sidebar a:hover {
-	background-color: #032549;
+	/* background-color: #032549; */
+	background-color: #ECECFC;
 }
 
 .activeLink {
-	background-color: #85ACE2;
+	/* background-color: #85ACE2; */
+	background-color: #e6e6f5;
 }

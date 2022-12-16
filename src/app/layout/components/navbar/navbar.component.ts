@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
     let iconsSidebar = document.getElementById('icons-sidebar');
 
     if (sidebar?.style.display === 'none') {
-      sidebar.style.display = 'block';
+      sidebar.style.display = 'flex';
       iconsSidebar!.style.display = 'none';
     } else {
       sidebar!.style.display = 'none';

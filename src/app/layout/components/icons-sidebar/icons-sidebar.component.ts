@@ -9,6 +9,7 @@ import { UserDto } from '../../../shared/Dtos/Users/UserDto';
 })
 export class IconsSidebarComponent implements OnInit {
   user!: UserDto;
+  userImage!: string;
 
   /**
    *
@@ -17,5 +18,8 @@ export class IconsSidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.auth.USER!;
+    this.userImage =
+      'https://mosaabportofoliobucket.s3.eu-west-3.amazonaws.com/' +
+      this.user.image;
   }
 }

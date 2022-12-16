@@ -2,7 +2,7 @@
 	color: #043C77;
 	height: 3.5rem;
 	/* padding-inline: 2rem; */
-	z-index: 100;
+	z-index: 10;
 }
 
 .navbar a {
