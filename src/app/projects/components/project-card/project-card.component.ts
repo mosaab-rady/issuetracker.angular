@@ -27,7 +27,15 @@ export class ProjectCardComponent {
   }
 
   showConfirmDelete(id: string): void {
-    document.getElementById(id)!.style.display = 'block';
+    let modal = document.getElementById(id);
+
+    modal!.style.display = 'block';
+
+    window.onclick = (e) => {
+      if (e.target === modal) {
+        modal!.style.display = 'none';
+      }
+    };
   }
 
   hideConfirmDelete(id: string): void {
