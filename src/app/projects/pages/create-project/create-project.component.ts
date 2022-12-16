@@ -2,6 +2,8 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastType } from 'src/app/shared/Dtos/Toast';
+import { ToastService } from 'src/app/shared/services/toast.service';
 import { CreateProjectDto } from '../../Dtos/CreateProjectDto';
 import { ProjectsService } from '../../services/projects.service';
 
@@ -23,7 +25,8 @@ export class CreateProjectComponent {
   constructor(
     private projectsService: ProjectsService,
     private router: Router,
-    public location: Location
+    public location: Location,
+    private toast: ToastService
   ) {}
 
   createProjectForm = new FormGroup<CreateProject>({
@@ -76,6 +79,11 @@ export class CreateProjectComponent {
       complete: () => {
         // console.log('complete');
         this.router.navigate(['/projects']);
+        this.toast.show(
+          `Created project ${project.name} successfully`,
+          5,
+          ToastType.Success
+        );
       },
     });
   }
