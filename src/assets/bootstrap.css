@@ -3219,8 +3219,8 @@ fieldset:disabled .btn {
 
 .btn-secondary {
   color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
+  background-color: #9ba0a4;
+  border-color: #9ba0a4;
 }
 
 .btn-secondary:hover {
@@ -3533,14 +3533,14 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-primary {
-  color: #0d6efd;
-  border-color: #0d6efd;
+  color: #043C77;
+  border-color: #043C77;
 }
 
 .btn-outline-primary:hover {
   color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #043C77;
+  border-color: #043C77;
 }
 
 .btn-check:focus+.btn-outline-primary,
@@ -5992,6 +5992,7 @@ fieldset:disabled .btn {
   overflow-x: hidden;
   overflow-y: auto;
   outline: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-dialog {
