@@ -9,36 +9,43 @@ import { ProjectsService } from '../../services/projects.service';
 })
 export class ProjectCardComponent {
   @Input() project!: ProjectDto;
-
+  isModalOpen: boolean = false;
+  deleteBtnValue: string = 'Delete';
+  deleteBtnState: boolean = false;
   /**
    *
    */
   constructor(private projectsService: ProjectsService) {}
 
-  deleteProject(id: string): void {
-    document.getElementById(`confirm-${id}`)?.setAttribute('disabled', 'true');
-    document.getElementById(`confirm-${id}`)?.setAttribute('value', 'Wait....');
+  deleteProject(): void {
+    // document.getElementById(`confirm-${id}`)?.setAttribute('disabled', 'true');
+    // document.getElementById(`confirm-${id}`)?.setAttribute('value', 'Wait....');
+    this.deleteBtnState = true;
+    this.deleteBtnValue = 'Wait....';
 
-    this.projectsService.DeleteProject(id).subscribe({
-      complete: () => {
+    this.projectsService.DeleteProject(this.project.id).subscribe({
+      complete: async () => {
         location.reload();
       },
     });
   }
 
-  showConfirmDelete(id: string): void {
-    let modal = document.getElementById(id);
+  showConfirmDelete(): void {
+    // let modal = document.getElementById(id);
 
-    modal!.style.display = 'block';
+    // modal!.style.display = 'block';
+    this.isModalOpen = true;
 
-    window.onclick = (e) => {
-      if (e.target === modal) {
-        modal!.style.display = 'none';
-      }
-    };
+    // window.onclick = (e) => {
+    //   if (e.target === modal) {
+    //     // modal!.style.display = 'none';
+    //     this.isModalOpen = false;
+    //   }
+    // };
   }
 
-  hideConfirmDelete(id: string): void {
-    document.getElementById(id)!.style.display = 'none';
+  hideConfirmDelete(): void {
+    // document.getElementById(id)!.style.display = 'none';
+    this.isModalOpen = false;
   }
 }
