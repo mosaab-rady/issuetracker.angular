@@ -57,13 +57,13 @@
 	<div class="card-footer position-relative">
 		<div class="d-flex gap-3 w-100 btn-group">
 			<a routerLink="project/{{project.id}}" class="btn btn-outline-primary flex-grow-1">Detail</a>
-			<div class="btn btn-outline-success flex-grow-1">Edit</div>
-			<div class="btn btn-outline-danger flex-grow-1" (click)="showConfirmDelete(project.id)">Delete</div>
+			<a class="btn btn-outline-success flex-grow-1" routerLink="update/{{project.id}}">Edit</a>
+			<button class="btn btn-outline-danger flex-grow-1" (click)="showConfirmDelete()">Delete</button>
 		</div>
 	</div>
 
 
-	<div class="modal" id="{{project.id}}">
+	<div class="modal d-block" *ngIf="isModalOpen">
 		<div class="modal-dialog">
 			<div class="modal-content p-3">
 				<div class="modal-header flex-column border-0">
@@ -87,9 +87,9 @@
 					project? This process cannot be undone.
 				</div>
 				<div class="modal-footer justify-content-center gap-3 btn-group">
-					<button type="button" class="btn btn-secondary" (click)="hideConfirmDelete(project.id)">Close</button>
-					<input type="button" id="confirm-{{project.id}}" (click)="deleteProject(project.id)" class="btn btn-danger"
-						value="Delete" />
+					<button type="button" class="btn btn-secondary" (click)="hideConfirmDelete()">Close</button>
+					<input type="button" (click)="deleteProject()" [value]="deleteBtnValue" [disabled]="deleteBtnState"
+						class="btn btn-danger" />
 				</div>
 			</div>
 		</div>
