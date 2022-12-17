@@ -51,7 +51,7 @@
 
 				<div class="text-end mt-3">
 					<button type="button" (click)="location.back()" class="btn me-3">Cancel</button>
-					<input type="submit" value="Create Project" id="createProjectBtn" class="btn btn-primary">
+					<input type="submit" [value]="createBtnValue" [disabled]="createBtnState" class="btn btn-primary">
 				</div>
 
 			</form>

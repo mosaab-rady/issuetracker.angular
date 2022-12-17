@@ -19,6 +19,8 @@ interface CreateProject {
   styleUrls: ['./create-project.component.css'],
 })
 export class CreateProjectComponent {
+  createBtnValue: string = 'Create Project';
+  createBtnState: boolean = false;
   /**
    *
    */
@@ -39,17 +41,18 @@ export class CreateProjectComponent {
   });
 
   Submit(): void {
-    console.log(this.createProjectForm);
+    // console.log(this.createProjectForm);
 
     if (this.createProjectForm.valid) {
-      document
-        .getElementById('createProjectBtn')
-        ?.setAttribute('value', 'Please Wait....');
+      // document
+      //   .getElementById('createProjectBtn')
+      //   ?.setAttribute('value', 'Please Wait....');
 
-      document
-        .getElementById('createProjectBtn')
-        ?.setAttribute('disabled', 'true');
-
+      // document
+      //   .getElementById('createProjectBtn')
+      //   ?.setAttribute('disabled', 'true');
+      this.createBtnState = true;
+      this.createBtnValue = 'Please Wait....';
       this.Create();
     }
   }
@@ -68,13 +71,15 @@ export class CreateProjectComponent {
           0: e.error.detail || 'somthing went wrong try again later',
         });
 
-        document
-          .getElementById('createProjectBtn')
-          ?.setAttribute('value', 'Create Project');
+        // document
+        //   .getElementById('createProjectBtn')
+        //   ?.setAttribute('value', 'Create Project');
 
-        document
-          .getElementById('createProjectBtn')
-          ?.removeAttribute('disabled');
+        // document
+        //   .getElementById('createProjectBtn')
+        //   ?.removeAttribute('disabled');
+        this.createBtnState = false;
+        this.createBtnValue = 'Create Project';
       },
       complete: () => {
         // console.log('complete');

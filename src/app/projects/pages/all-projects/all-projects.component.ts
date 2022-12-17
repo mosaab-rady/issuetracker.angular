@@ -9,7 +9,7 @@ import { ProjectsService } from '../../services/projects.service';
   styleUrls: ['./all-projects.component.css'],
 })
 export class AllProjectsComponent implements OnInit {
-  projects?: Observable<ProjectDto[]>;
+  projects!: Observable<ProjectDto[]>;
   /**
    *
    */
