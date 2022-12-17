@@ -26,6 +26,9 @@ interface signupForm {
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
+  signupBtnValue: string = 'Sign Up';
+  singupBtnState: boolean = false;
+
   errors: string[] | null = null;
   showPassword: boolean = false;
   togglePassword(): void {
@@ -78,8 +81,10 @@ export class SignupComponent {
           ]);
           this.errors = ['somthing went wrong please try again later.'];
         }
-        document.getElementById('signupBtn')!.removeAttribute('disabled');
-        document.getElementById('signupBtn')!.setAttribute('value', 'Sign Up');
+        // document.getElementById('signupBtn')!.removeAttribute('disabled');
+        // document.getElementById('signupBtn')!.setAttribute('value', 'Sign Up');
+        this.singupBtnState = false;
+        this.signupBtnValue = 'Sign Up';
       },
       complete: () => {
         this.router.navigate(['confirm-email']);
@@ -91,10 +96,12 @@ export class SignupComponent {
     // console.log(this.SignupForm);
 
     if (this.SignupForm.valid) {
-      document.getElementById('signupBtn')!.setAttribute('disabled', 'true');
-      document
-        .getElementById('signupBtn')!
-        .setAttribute('value', 'Please Wait....');
+      // document.getElementById('signupBtn')!.setAttribute('disabled', 'true');
+      // document
+      //   .getElementById('signupBtn')!
+      //   .setAttribute('value', 'Please Wait....');
+      this.singupBtnState = true;
+      this.signupBtnValue = 'Please Wait....';
       this.Signup();
     }
   }

@@ -18,6 +18,8 @@ interface LoginForm {
 })
 export class LoginComponent {
   showPassword: boolean = false;
+  loginBtnValue: string = 'LOGIN';
+  loginBtnState: boolean = false;
   /**
    *
    */
@@ -37,10 +39,13 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.LoginForm.valid) {
-      document.getElementById('loginBtn')!.setAttribute('disabled', 'true');
-      document
-        .getElementById('loginBtn')!
-        .setAttribute('value', 'Please Wait....');
+      // document.getElementById('loginBtn')!.setAttribute('disabled', 'true');
+      // document
+      //   .getElementById('loginBtn')!
+      //   .setAttribute('value', 'Please Wait....');
+
+      this.loginBtnState = true;
+      this.loginBtnValue = 'Please Wait....';
       this.Login();
     }
   }
@@ -62,8 +67,10 @@ export class LoginComponent {
         this.LoginForm.setErrors({
           0: err.error?.detail || 'somthing went wrong try again later',
         });
-        document.getElementById('loginBtn')!.removeAttribute('disabled');
-        document.getElementById('loginBtn')!.setAttribute('value', 'LOGIN');
+        // document.getElementById('loginBtn')!.removeAttribute('disabled');
+        // document.getElementById('loginBtn')!.setAttribute('value', 'LOGIN');
+        this.loginBtnState = false;
+        this.loginBtnValue = 'LOGIN';
       },
       complete: () => {
         // console.log('complete');

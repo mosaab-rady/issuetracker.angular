@@ -69,7 +69,7 @@
         <!-- End of Remember Me -->
 
         <!-- submit -->
-        <input type="submit" class="auth__btn btn w-100" id="loginBtn" value="LOGIN" />
+        <input type="submit" class="auth__btn btn w-100" [disabled]="loginBtnState" [value]="loginBtnValue" />
 
         <!-- End Of Submit -->
 
