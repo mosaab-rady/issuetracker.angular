@@ -7,6 +7,7 @@ import { ProjectDetailComponent } from './pages/project-detail/project-detail.co
 import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { CreateProjectComponent } from './pages/create-project/create-project.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateProjectComponent } from './pages/update-project/update-project.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProjectDetailComponent,
     ProjectCardComponent,
     CreateProjectComponent,
+    UpdateProjectComponent,
   ],
   imports: [CommonModule, ProjectsRoutingModule, ReactiveFormsModule],
 })
