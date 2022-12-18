@@ -25,7 +25,8 @@
 
 
 	<!-- projects -->
-	<a *ngIf="user.roles.includes('manager')" title="Manage Projects" routerLink="projects" routerLinkActive="activeLink">
+	<a *ngIf="user.roles.includes('manager')" title="Manage Projects" routerLink="/projects"
+		routerLinkActive="activeLink">
 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layers"
 			viewBox="0 0 16 16">
 			<path
@@ -37,7 +38,7 @@
 
 	<!-- issues -->
 
-	<a *ngIf="user.roles.includes('manager')" title="All Issues">
+	<a *ngIf="user.roles.includes('manager')" title="All Issues" routerLink="/issues" routerLinkActive="activeLink">
 		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-nut"
 			viewBox="0 0 16 16">
 			<path
