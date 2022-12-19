@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { UserDto } from 'src/app/shared/Dtos/Users/UserDto';
+import { UserDto } from 'src/app/users/Dtos/UserDto';
+import { enviroment } from 'src/enviroments/enviroment';
 
 @Component({
   selector: 'app-navbar',
@@ -18,9 +19,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.auth.USER!;
-    this.userImage =
-      'https://mosaabportofoliobucket.s3.eu-west-3.amazonaws.com/' +
-      this.user.image;
+    this.userImage = enviroment.awsUrl + this.user.image;
   }
 
   logout(): void {
