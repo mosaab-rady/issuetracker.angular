@@ -5,6 +5,8 @@ import { enviroment } from 'src/enviroments/enviroment';
 import { CreateProjectDto } from '../Dtos/CreateProjectDto';
 import { ProjectDto } from '../Dtos/ProjectDto';
 import { UpdateProjectDto } from '../Dtos/UpdateProjectDto';
+import { UserDto } from 'src/app/users/Dtos/UserDto';
+import { IssueDto } from 'src/app/issues/Dtos/IssueDto';
 
 @Injectable({
   providedIn: 'root',
@@ -46,6 +48,22 @@ export class ProjectsService {
     return this.http.put<ProjectDto>(
       `${enviroment.apiUrl}/api/projects/${id}`,
       updateProjectDto,
+      { withCredentials: true }
+    );
+  }
+
+  GetUsersAssignedToProject(projectId: string): Observable<UserDto[]> {
+    return this.http.get<UserDto[]>(
+      `${enviroment.apiUrl}/api/projects/${projectId}/users`,
+      { withCredentials: true }
+    );
+  }
+
+  // edit users in project
+
+  GetIssuesInProject(projectId: string): Observable<IssueDto[]> {
+    return this.http.get<IssueDto[]>(
+      `${enviroment.apiUrl}/api/projects/${projectId}/issues`,
       { withCredentials: true }
     );
   }
