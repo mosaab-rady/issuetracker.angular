@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { firstValueFrom, Observable } from 'rxjs';
-import { LoginDto } from 'src/app/shared/Dtos/Users/LoginDto';
-import { UserDto } from 'src/app/shared/Dtos/Users/UserDto';
+import { LoginDto } from 'src/app/users/Dtos/LoginDto';
+import { UserDto } from 'src/app/users/Dtos/UserDto';
 import { enviroment } from 'src/enviroments/enviroment';
 
 @Injectable({

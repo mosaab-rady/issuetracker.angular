@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginDto } from 'src/app/shared/Dtos/Users/LoginDto';
-import { UserDto } from 'src/app/shared/Dtos/Users/UserDto';
+import { LoginDto } from 'src/app/users/Dtos/LoginDto';
+import { UserDto } from 'src/app/users/Dtos/UserDto';
 import { AuthService } from '../../services/auth.service';
 
 interface LoginForm {
