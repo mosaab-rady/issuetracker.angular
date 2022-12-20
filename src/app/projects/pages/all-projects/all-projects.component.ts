@@ -26,4 +26,8 @@ export class AllProjectsComponent implements OnInit {
     //   },
     // });
   }
+
+  trackByFn(_index: number, project: ProjectDto): string {
+    return project.id;
+  }
 }
