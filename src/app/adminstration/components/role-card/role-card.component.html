@@ -1,0 +1,62 @@
+<div class="card shadow">
+
+	<div class="card-header bg-primary text-light">
+		Role Id : {{role.id}}
+	</div>
+
+	<div class="card-body">
+
+		<div class="container-fluid p-0">
+
+			<div class="row m-0">
+				<h5 class="p-0">
+					{{role.name}}
+				</h5>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="card-footer position-relative">
+		<div class="d-flex gap-3 w-100 btn-group">
+			<a class="btn btn-outline-primary flex-grow-1" routerLink="/adminstration/edit-role/{{role.id}}">Edit</a>
+			<button class="btn btn-outline-danger flex-grow-1" (click)="showConfirmDelete()">Delete</button>
+		</div>
+	</div>
+
+
+	<div class="modal d-block" *ngIf="isModalOpen">
+		<div class="modal-dialog">
+			<div class="modal-content p-3">
+				<div class="modal-header flex-column border-0">
+
+					<div class="mb-4 text-danger p-2 border border-2 border-danger rounded-circle">
+						<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-x"
+							viewBox="0 0 16 16">
+							<path
+								d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+						</svg>
+					</div>
+
+					<h3 class="modal-title text-muted fw-normal">Are you sure?</h3>
+
+				</div>
+				<div class="modal-body text-center">
+					Do you really want to delete
+					<span class="fw-bolder">
+						{{role.name}}
+					</span>
+					role? This process cannot be undone.
+				</div>
+				<div class="modal-footer justify-content-center gap-3 btn-group">
+					<button type="button" class="btn btn-secondary" (click)="hideConfirmDelete()">Close</button>
+					<input type="button" (click)="DeleteRole()" [value]="deleteBtnValue" [disabled]="deleteBtnState"
+						class="btn btn-danger" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
