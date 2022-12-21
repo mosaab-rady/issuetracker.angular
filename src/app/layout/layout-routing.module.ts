@@ -24,6 +24,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('../users/users.module').then((m) => m.UsersModule),
       },
+      {
+        path: 'adminstration',
+        loadChildren: () =>
+          import('../adminstration/adminstration.module').then(
+            (m) => m.AdminstrationModule
+          ),
+      },
     ],
   },
 ];
