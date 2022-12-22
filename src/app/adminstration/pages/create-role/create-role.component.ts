@@ -5,11 +5,7 @@ import { Location } from '@angular/common';
 import { CreateRoleDto } from '../../Dtos/CreateRoleDto';
 import { ToastService } from 'src/app/shared/services/toast.service';
 import { ToastType } from 'src/app/shared/Dtos/Toast';
-
-interface errorMessage {
-  code: string;
-  description: string;
-}
+import { errorMessage } from 'src/app/shared/Dtos/ErrorMessage';
 
 @Component({
   selector: 'app-create-role',
