@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RolesService } from '../../services/roles.service';
 import { RoleDto } from '../../Dtos/RoleDto';
 import { Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   templateUrl: './list-roles.component.html',
   styleUrls: ['./list-roles.component.css'],
 })
-export class ListRolesComponent {
+export class ListRolesComponent implements OnInit {
   roles!: Observable<RoleDto[]>;
   /**
    *
